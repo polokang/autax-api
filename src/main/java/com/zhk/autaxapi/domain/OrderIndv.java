@@ -28,8 +28,6 @@ public class OrderIndv {
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
-	private String addr;
-	@Column(nullable = false)
 	private String taxYear;
 	@Column(nullable = false)
 	private String incomeTypes;
@@ -38,6 +36,7 @@ public class OrderIndv {
 	@Column(nullable = false)
 	private String isLast;
 	
+	private String addr;
 	private String bankName;
 	private String bankBSB;
 	private String bankAccount;

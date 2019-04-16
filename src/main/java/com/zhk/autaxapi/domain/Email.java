@@ -26,6 +26,11 @@ public class Email {
 	@Column(nullable = false)
 	private String m_sendtime;
 	
+	@Column(nullable = false)
+	private String m_attachpath;
+	@Column(nullable = false)
+	private String m_attachname;
+	
 	public Email() {
 
 	}
@@ -76,6 +81,24 @@ public class Email {
 
 	public void setM_sendtime(String m_sendtime) {
 		this.m_sendtime = m_sendtime;
+	}
+	
+	
+
+	public String getM_attachpath() {
+		return m_attachpath;
+	}
+
+	public void setM_attachpath(String m_attachpath) {
+		this.m_attachpath = m_attachpath;
+	}
+
+	public String getM_attachname() {
+		return m_attachname;
+	}
+
+	public void setM_attachname(String m_attachname) {
+		this.m_attachname = m_attachname;
 	}
 
 	@Override

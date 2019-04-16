@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zhk.autaxapi.AuTaxProperties;
 import com.zhk.autaxapi.domain.ExcelEntity;
 import com.zhk.autaxapi.domain.OrderIndv;
 import com.zhk.autaxapi.domain.OrderIndvRepository;
@@ -24,7 +25,8 @@ public class TaxOrderController {
     private OrderIndvRepository orderIndvRepository;
 	@Autowired
 	private TaxOrderService taxOrderService;
-	
+	@Autowired
+	private AuTaxProperties auTaxProperties;
 	
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -41,9 +43,9 @@ public class TaxOrderController {
 		order = orderIndvRepository.save(order);
 		
 		Integer baseNum = 100000 + order.getId();
+		String excelName = baseNum.toString()+".xls";
 		ArrayList<ExcelEntity> list = taxOrderService.getExcellFromOrderIndv(order);
-		ExcelUtils.saveExcel(list, "/Users/zhk/Study", baseNum.toString()+".xls");
-		
-		return "success";
+		ExcelUtils.saveExcel(list, auTaxProperties.getSavepath(), excelName);
+		return excelName;
 	}
 }

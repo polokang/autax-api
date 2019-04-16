@@ -5,9 +5,9 @@
 - `{"user":{"name": "nihao","age": "11"}}`
 
 2.  [get] /users/1
-3.  [get] /sendmail
+3.  [post] /sendmail
 
-- `{"email":{"m_to":"polokang@163.com","m_subject":"邮件测试标题","m_content":"邮件测试内容","m_token":"testxxx"}}`
+- `{ "email": { "m_to": "polokang@163.com", "m_subject": "sucess agein", "m_content": "邮件测试内容sucess", "m_token": "autax", "m_attachname": "100034.xls", "m_attachpath": "/usr/tomcat/tomcat8/temp" } }`
 
 ### website: https://www.auselection.com/autax-api
 
@@ -54,4 +54,15 @@ _[原因]因为 jsonplugin 用的是 java 的内审机制.hibernate 会给被管
 
 3. 在 service 层新增 MailService 类，项目启动后找不到该对象。
 
-   - 在该类上增加注入 @Component 即可
+   - 在该类上增加注入 @Component 或 @Service 即可
+
+4. 开启邮件功能
+
+- 163 邮箱和 QQ 邮箱都需要先开启`POP3/SMTP服务`
+- 163 邮件服务器的密码是开启功能后的`客户端授权密码`
+- QQ 邮件服务器的密码是开启功能后的`授权码`
+- Gmail 服务器需要开启`安全性较低的应用的访问权限`
+  - https://myaccount.google.com/lesssecureapps
+- 腾讯服务器需`开启25端口`
+  - https://cloud.tencent.com/developer/article/1200828
+- 由于 Great Wall 的原因(用的腾讯服务器，所以不能访问 google),目前只能用 163 的邮件系统给国内的邮箱发邮件，暂时不能用 gmail
