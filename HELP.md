@@ -66,3 +66,27 @@ _[原因]因为 jsonplugin 用的是 java 的内审机制.hibernate 会给被管
 - 腾讯服务器需`开启25端口`
   - https://cloud.tencent.com/developer/article/1200828
 - 由于 Great Wall 的原因(用的腾讯服务器，所以不能访问 google),目前只能用 163 的邮件系统给国内的邮箱发邮件，暂时不能用 gmail
+
+5. 增加读取个人订单中文功能并输入 Excel 表格中
+
+- pom.xml 增加依赖包
+
+  - `<dependency>`
+  - `<groupId>org.springframework.boot</groupId>`
+  - `<artifactId>spring-boot-configuration-processor</artifactId>`
+  - `<optional>true</optional>`
+  - `</dependency>`
+
+- 实体类增加注入
+  - `@ConfigurationProperties(prefix = "com.zhk.autaxapi.autaxorder")`
+  - `@PropertySource(value = "classpath:autaxorder-application.properties", encoding = "utf-8")`
+  - `@Component`
+- TaxOrderService 对象中增加根据 fieldname 换取中文方法
+
+  ```
+  @Autowired
+  private OrderIndv orderProperties;
+  String name = entry.getKey();
+  Method method = clazz.getDeclaredMethod(methodName);
+  Object value = method.invoke(orderProperties);
+  ```
