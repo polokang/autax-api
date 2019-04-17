@@ -6,10 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //54 fields
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+@ConfigurationProperties(prefix = "com.zhk.autaxapi.autaxorder")
+@PropertySource(value = "classpath:autaxorder-application.properties", encoding = "utf-8")
+@Component
 @Entity
 public class OrderIndv {
 	@Id
@@ -70,16 +77,16 @@ public class OrderIndv {
 	private String anyProtection;
 	private String anyOther;
 	private String taxfee;
+	private String prepayment;
 	private String family;
 	private String spouseSuper;
-	private String prepayment;
 	private String privateSuperName;
 	private String privateSuper;
 	private String remoteRegion;
 	private String nursingName;
 	private String nursingFee;
 	private String otherbackName;
-	private String otherbakeFee;
+	private String otherbackFee;
 	
 	private String applyTime;
 	private String state;
@@ -409,11 +416,11 @@ public class OrderIndv {
 	public void setOtherbackName(String otherbackName) {
 		this.otherbackName = otherbackName;
 	}
-	public String getOtherbakeFee() {
-		return otherbakeFee;
+	public String getOtherbackFee() {
+		return otherbackFee;
 	}
-	public void setOtherbakeFee(String otherbakeFee) {
-		this.otherbakeFee = otherbakeFee;
+	public void setOtherbackFee(String otherbackFee) {
+		this.otherbackFee = otherbackFee;
 	}
 	public String getApplyTime() {
 		return applyTime;

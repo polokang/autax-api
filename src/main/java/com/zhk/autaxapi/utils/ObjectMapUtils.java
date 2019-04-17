@@ -27,7 +27,7 @@ public class ObjectMapUtils {
 			Method method = clazz.getDeclaredMethod(methodName);
 			// 执行方法
 			Object value = method.invoke(obj);
-			if(value == null) {
+			if (value == null) {
 				value = "";
 			}
 

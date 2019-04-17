@@ -28,7 +28,7 @@
 .vscode/
 
 ###Custom
-*.properties
+application.properties
 mvnw
 mvnw.*
 .mvn/
