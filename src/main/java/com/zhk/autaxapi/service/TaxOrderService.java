@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhk.autaxapi.domain.ExcelEntity;
+import com.zhk.autaxapi.domain.OrderBusi;
 import com.zhk.autaxapi.domain.OrderIndv;
 import com.zhk.autaxapi.utils.ObjectMapUtils;
 
@@ -15,6 +16,8 @@ import com.zhk.autaxapi.utils.ObjectMapUtils;
 public class TaxOrderService {
 	@Autowired  
 	private OrderIndv orderProperties;
+	@Autowired  
+	private OrderBusi busiProperties;
 	public ArrayList<ExcelEntity> getExcellFromOrderIndv(OrderIndv order) throws Exception {
 		ArrayList<ExcelEntity> list = new ArrayList<ExcelEntity>();
 		Map<String, String> map = ObjectMapUtils.Objcet2Map(order);
@@ -29,7 +32,23 @@ public class TaxOrderService {
 			}
 			list.add(new ExcelEntity( value.toString() , entry.getValue()));
 		}
-
+		return list;
+	}
+	
+	public ArrayList<ExcelEntity> getExcellFromOrderBusi(OrderBusi cOrder) throws Exception {
+		ArrayList<ExcelEntity> list = new ArrayList<ExcelEntity>();
+		Map<String, String> map = ObjectMapUtils.Objcet2Map(cOrder);
+		Class<? extends Object> clazz = busiProperties.getClass();
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			String name = entry.getKey();
+			String methodName = "get" + name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
+			Method method = clazz.getDeclaredMethod(methodName);
+			Object value = method.invoke(busiProperties);
+			if (value == null) {
+				value = "序号";
+			}
+			list.add(new ExcelEntity( value.toString() , entry.getValue()));
+		}
 		return list;
 	}
 }
