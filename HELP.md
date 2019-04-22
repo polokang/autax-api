@@ -9,6 +9,9 @@
 
 - `{ "email": { "m_to": "polokang@163.com", "m_subject": "sucess agein", "m_content": "邮件测试内容sucess", "m_token": "autax", "m_attachname": "100034.xls", "m_attachpath": "/usr/tomcat/tomcat8/temp" } }`
 
+4. `[post] /order/save` 个人退税
+5. `[post] /order/saveBusi` 公司退税
+
 ### website: https://www.auselection.com/autax-api
 
 ### local: http://localhost:8080
